@@ -1,6 +1,5 @@
 SRC_URI = " \
 	git://github.com/streamitbv/u-boot.git;branch=release; \
-	file://binutils-2.28-ld-fix.patch \
 "
 
 SRCREV = "${AUTOREV}"
