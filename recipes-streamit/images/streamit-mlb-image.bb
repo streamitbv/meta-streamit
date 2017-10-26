@@ -1,4 +1,4 @@
-DESCRIPTION = "Basic Streamit MLB image."
+DESCRIPTION = "Streamit MLB base image"
 
 require recipes-rk/images/rk-image-multimedia.bb
 
