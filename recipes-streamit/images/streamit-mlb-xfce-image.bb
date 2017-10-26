@@ -1,4 +1,4 @@
-DESCRIPTION = "Streamit MLB Image with XFCE installed."
+DESCRIPTION = "Streamit MLB image with XFCE installed"
 
 IMAGE_FEATURES += "\
 	package-management \
