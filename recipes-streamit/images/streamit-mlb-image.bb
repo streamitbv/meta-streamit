@@ -2,7 +2,7 @@ DESCRIPTION = "Streamit MLB base image"
 
 require recipes-rk/images/rk-image-multimedia.bb
 
-GPTIMG_APPEND = "console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk0p7 rootfstype=ext4 init=/sbin/init"
+IMAGE_FSTYPES += " streamit-mlb-gpt-img streamit-mlb-sd-img" 
 
 CORE_IMAGE_EXTRA_INSTALL += " \
 	openssh \
