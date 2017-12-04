@@ -2,6 +2,8 @@ DESCRIPTION = "Streamit MLB base image"
 
 require recipes-rk/images/rk-image-multimedia.bb
 
+IMAGE_FSTYPES += " streamit-mlb-gpt-img streamit-mlb-sd-img" 
+
 inherit extrausers
 
 EXTRA_USERS_PARAMS ?= " \
@@ -9,9 +11,6 @@ EXTRA_USERS_PARAMS ?= " \
     usermod -aG sudo waveuser; \
     usermod -p '!' root; \
 "
-
-GPTIMG_APPEND = "console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk0p7 rootfstype=ext4 init=/sbin/init"
-
 CORE_IMAGE_EXTRA_INSTALL += " \
 	openssh \
     rsync \
