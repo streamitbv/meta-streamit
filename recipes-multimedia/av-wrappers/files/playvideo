@@ -1,0 +1,17 @@
+#!/bin/sh
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 [hdmi|lvds] [URI OR LOCAL FILE]"
+    exit
+fi
+
+SINK="kmssink"
+if [ -n "$DISPLAY" ]; then
+    SINK="rkximagesink"
+fi
+
+if [ "$1" = "hdmi" ]; then
+    sudo gst-launch-1.0 uridecodebin uri="$2" ! $SINK connector-id=111
+else
+    sudo gst-launch-1.0 uridecodebin uri="$2" ! $SINK
+fi
+    
