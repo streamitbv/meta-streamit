@@ -35,5 +35,5 @@ xrandr -s 1024x768
 # Default files to run if $HOME/.mini_x/session or /etc/mini_x/session
 # dont exist. 
 
-su waveuser -c 'matchbox-terminal'&
+su waveuser -c '/bin/bash --login -c matchbox-terminal'&
 exec matchbox-window-manager
