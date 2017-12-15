@@ -18,5 +18,6 @@ CORE_IMAGE_EXTRA_INSTALL += " \
     rsync \
     nano \
     av-wrappers \
+    openjdk-8 \
     chromium \
 "
