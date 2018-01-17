@@ -5,3 +5,4 @@ if [ "$#" -lt 1 ]; then
 fi
 
 gst-play-1.0 "$1"
+gst-launch-1.0 urisourcebin uri="$1" ! decodebin ! audioconvert ! audioresample ! autoaudiosink
