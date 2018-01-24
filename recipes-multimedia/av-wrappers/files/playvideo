@@ -1,6 +1,7 @@
 #!/bin/sh
 if [ "$#" -lt 2 ]; then
-    echo "Usage: $0 [hdmi|lvds] [URI OR LOCAL FILE]"
+    echo "$0: play a video file using hardware decoding"
+    echo "Usage: $0 [hdmi-1|hdmi-2] [URI OR LOCAL FILE]"
     exit
 fi
 
@@ -9,9 +10,26 @@ if [ -n "$DISPLAY" ]; then
     SINK="rkximagesink"
 fi
 
-if [ "$1" = "hdmi" ]; then
-    sudo gst-launch-1.0 uridecodebin uri="$2" ! $SINK connector-id=111
+CONNECTOR_NAME=""
+if [ "$1" = "hdmi-1" ]; then
+    CONNECTOR_NAME="HDMI"
+elif [ "$1" = "hdmi-2" ]; then
+    CONNECTOR_NAME="LVDS"
 else
-    sudo gst-launch-1.0 uridecodebin uri="$2" ! $SINK
+    echo "Invalid output name: $1"
+    exit
 fi
+
+KMS_RESULT=$(kmsprint -l | grep "Connector .* ${CONNECTOR_NAME}")
+REGEX=".*\(([0-9]+)\).*\(.*\).*" 
+CONNECTOR_ID=""
+
+if [[ $KMS_RESULT =~ $REGEX ]]; then
+    CONNECTOR_ID="${BASH_REMATCH[1]}"
+else
+    echo "Could not find KMS connector id for output $1"
+    exit
+fi
+
+sudo gst-launch-1.0 uridecodebin uri="$2" ! queue ! $SINK connector-id=$CONNECTOR_ID
     
