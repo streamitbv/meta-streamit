@@ -20,7 +20,7 @@ else
     exit
 fi
 
-KMS_RESULT=$(kmsprint -l | grep "Connector .* ${CONNECTOR_NAME}")
+KMS_RESULT=$(sudo kmsprint -l | grep "Connector .* ${CONNECTOR_NAME}")
 REGEX=".*\(([0-9]+)\).*\(.*\).*" 
 CONNECTOR_ID=""
 
