@@ -18,5 +18,5 @@ CORE_IMAGE_EXTRA_INSTALL += " \
     rsync \
     nano \
     av-wrappers \
-    chromium \
+    chromium-x11 \
 "
